@@ -1,9 +1,12 @@
 package space.wyu;
 
 import com.opensymphony.xwork2.ActionSupport;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +26,18 @@ public class GetInfo extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        JSONObject jo = new JSONObject();
-        jo.put("name","wangyu");
-        result = jo.toString();
-
+        AnalyzeOriginInfo.getData();
+        JSONArray ja = JSONArray.fromObject(AnalyzeOriginInfo.route.toString());
+        System.out.println(ja);
+        AnalyzeOriginInfo.route.clear();
+        result = ja.toString();
         return SUCCESS;
+    }
+
+    public static void main(String[] args) throws IOException {
+        AnalyzeOriginInfo.getData();
+        JSONArray ja = JSONArray.fromObject(AnalyzeOriginInfo.route.toString());
+        System.out.println(ja);
+        AnalyzeOriginInfo.route.clear();
     }
 }

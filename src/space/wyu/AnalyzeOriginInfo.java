@@ -2,19 +2,16 @@ package space.wyu;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.Properties;
-import java.util.PropertyResourceBundle;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Main {
-
-    static int longitude;
-    static int latitude;
-    static String time = "00:00:00:000";
-    static Properties pr = new Properties();
-    static String gpsRoute = "F:\\IdeaProjects\\GPSAnalyze\\info.txt";
+public class AnalyzeOriginInfo {
+    static List <GPSNode> route = new ArrayList<>();
+    static String newGpsInfo = "F:\\IdeaProjects\\GPSAnalyze\\newGpsInfo.txt";
+    static String gpsInfoHistory = "F:\\IdeaProjects\\GPSAnalyze\\gpsInfoHistory.txt.txt";
 
     public static void getData() throws IOException {
-        File file = new File(gpsRoute);
+        File file = new File(newGpsInfo);
         BufferedReader br = new BufferedReader(new FileReader(file));
         int rl;
         StringBuilder sb = new StringBuilder();
@@ -37,20 +34,24 @@ public class Main {
             case "$GPGSV"://当前GPS卫星状态信息
                 break;
             case "$GPGGA"://位置信息
-                StringBuilder sb = new StringBuilder(info[1]);
-                sb.replace(6,7,":");
-                sb.insert(4,":");
-                sb.insert(2,":");
-                time = sb.toString();
                 break;
             case "$GPGLL"://地理位置和经纬度信息
                 break;
             case "$GPRMC"://推荐的最简定位信息
+                route.add(new GPSNode(Float.parseFloat(info[5]),Float.parseFloat(info[3]),
+                        analyzeTime(info[1]),Float.parseFloat(info[7]),Float.parseFloat(info[8]),info[9]));
                 break;
             case "$GPVTG"://地面速度信息
                 break;
             default:
                 break;
         }
+    }
+    public static String analyzeTime(String time){
+        StringBuilder sb = new StringBuilder(time);
+        sb.replace(6,7,":");
+        sb.insert(4,":");
+        sb.insert(2,":");
+        return sb.toString();
     }
 }

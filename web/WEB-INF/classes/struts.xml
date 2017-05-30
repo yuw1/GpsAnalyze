@@ -7,7 +7,7 @@
 <struts>
     <constant name="struts.devMode" value="true" />
     <package name="default" namespace="/" extends="struts-default,json-default">
-        <action name="" class="space.wyu.GpsInfoAction" method="execute">
+        <action name="" class="space.wyu.ShowGpsInfoAction" method="execute">
             <result name="success">/index.jsp</result>
         </action>
         <action name="getInfo" class="space.wyu.GetInfo" method="execute">
