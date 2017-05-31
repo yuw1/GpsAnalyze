@@ -27,7 +27,7 @@
     };
     var map = new BMap.Map("map");
     var point = new BMap.Point(116.404, 39.915);
-    map.centerAndZoom(point, 15);
+    map.centerAndZoom(point, 30);
     map.enableScrollWheelZoom();
     $.ajax({
         url:"/gps/getInfo",
@@ -35,24 +35,15 @@
             var data = JSON.parse(data);
             var size = JSONLength(data);
             var point = new Array(size);
+            map.setCenter(new BMap.Point(parseFloat(data[0].longitude),parseFloat(data[0].latitude)))
             for(var i = 0;i<size;i++){
                 point[i] = new BMap.Point(parseFloat(data[i].longitude),parseFloat(data[i].latitude));
-                alert(parseFloat(data[i].longitude))
-                alert(parseFloat(data[i].latitude))
             }
             var curve = new BMapLib.CurveLine(point, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5});
             map.addOverlay(curve);
             curve.enableEditing();
         }
     })
-    var beijingPosition=new BMap.Point(116.432045,39.910683),
-        hangzhouPosition=new BMap.Point(120.129721,30.314429),
-        taiwanPosition=new BMap.Point(121.491121,25.127053);
-    var points = [beijingPosition,hangzhouPosition, taiwanPosition];
-
-    var curve = new BMapLib.CurveLine(points, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5}); //创建弧线对象
-    map.addOverlay(curve); //添加到地图中
-    curve.enableEditing(); //开启编辑功能
 </script>
 </body>
 </html>
