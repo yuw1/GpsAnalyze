@@ -43,7 +43,7 @@ public class AnalyzeOriginInfo {
             case "$GPGLL"://地理位置和经纬度信息
                 break;
             case "$GPRMC"://推荐的最简定位信息
-                route.add(new GPSNode(Float.parseFloat(info[5]),Float.parseFloat(info[3]),
+                route.add(new GPSNode(Float.parseFloat(info[5])/100,Float.parseFloat(info[3])/100,
                         analyzeTime(info[1]),Float.parseFloat(info[7]),Float.parseFloat(info[8]),info[9]));
                 break;
             case "$GPVTG"://地面速度信息

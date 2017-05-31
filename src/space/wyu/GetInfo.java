@@ -36,10 +36,7 @@ public class GetInfo extends ActionSupport {
     public static void main(String[] args) throws IOException {
         AnalyzeOriginInfo.getData();
         JSONArray ja = JSONArray.fromObject(AnalyzeOriginInfo.route.toString());
-        Logger log = Logger.getLogger(String.valueOf(GetInfo.class));
-        PropertyConfigurator.configure("log4j.properties");
-        String result = ja.toString();
-        log.info(result);
         AnalyzeOriginInfo.route.clear();
+        System.out.println(ja.get(0));
     }
 }
