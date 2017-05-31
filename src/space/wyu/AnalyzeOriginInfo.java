@@ -1,6 +1,5 @@
 package space.wyu;
 
-import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +9,9 @@ public class AnalyzeOriginInfo {
     static String newGpsInfo = "F:\\IdeaProjects\\GPSAnalyze\\newGpsInfo.txt";
     static String gpsInfoHistory = "F:\\IdeaProjects\\GPSAnalyze\\gpsInfoHistory.txt.txt";
 
+    private AnalyzeOriginInfo() {
+    }
+
     public static void getData() throws IOException {
         File file = new File(newGpsInfo);
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -18,7 +20,6 @@ public class AnalyzeOriginInfo {
         while ((rl =  br.read())!=-1) {
             if(rl == 10){
                 String[] info = sb.toString().split(",");
-                System.out.println(sb);
                 sb.setLength(0);
                 analyze(info);
             }else {
@@ -26,6 +27,7 @@ public class AnalyzeOriginInfo {
             }
 
         }
+        br.close();
     }
     public static void analyze(String[]info){
         switch (info[0]){
