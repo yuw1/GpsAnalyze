@@ -6,15 +6,16 @@ import java.util.List;
 
 public class AnalyzeOriginInfo {
     static List <GPSNode> route = new ArrayList<>();
-    static String newGpsInfo = "F:\\IdeaProjects\\GPSAnalyze\\newGpsInfo.txt";
-    static String gpsInfoHistory = "F:\\IdeaProjects\\GPSAnalyze\\gpsInfoHistory.txt.txt";
+    static String newGpsInfo = "F:"+File.separator+"IdeaProjects"+File.separator+"GPSAnalyze"+File.separator+"newGpsInfo.txt";
+    static String gpsInfoHistory = "F:"+File.separator+"IdeaProjects"+File.separator+"GPSAnalyze"+File.separator+"gpsInfoHistory.txt";
 
     private AnalyzeOriginInfo() {
     }
 
     public static void getData() throws IOException {
-        File file = new File(newGpsInfo);
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        FileInputStream  fis = new FileInputStream(newGpsInfo);
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader br = new BufferedReader(isr);
         int rl;
         StringBuilder sb = new StringBuilder();
         while ((rl =  br.read())!=-1) {
@@ -28,6 +29,8 @@ public class AnalyzeOriginInfo {
 
         }
         br.close();
+        isr.close();
+        fis.close();
     }
     public static void analyze(String[]info){
         switch (info[0]){
