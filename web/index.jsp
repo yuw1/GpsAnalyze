@@ -29,6 +29,10 @@
     var point = new BMap.Point(116.404, 39.915);
     map.centerAndZoom(point, 30);
     map.enableScrollWheelZoom();
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.OverviewMapControl());
+    map.addControl(new BMap.MapTypeControl());
     $.ajax({
         url:"/gps/getInfo",
         success:function (data) {
