@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnalyzeOriginInfo {
-    static List <GPSNode> route = new ArrayList<>();
+    static List <GPRMCNode> route = new ArrayList<>();
     static String newGpsInfo = "F:"+File.separator+"IdeaProjects"+File.separator+"GPSAnalyze"+File.separator+"newGpsInfo.txt";
     static String gpsInfoHistory = "F:"+File.separator+"IdeaProjects"+File.separator+"GPSAnalyze"+File.separator+"gpsInfoHistory.txt";
 
@@ -98,7 +98,7 @@ public class AnalyzeOriginInfo {
                 System.out.println(GPGLLNode.toString1());
                 break;
             case "$GPRMC"://推荐的最简定位信息
-                GPSNode temp = new GPSNode(Float.parseFloat(info[5])/100,Float.parseFloat(info[3])/100,
+                GPRMCNode temp = new GPRMCNode(Float.parseFloat(info[5])/100,Float.parseFloat(info[3])/100,
                         analyzeTime(info[1]),Float.parseFloat(info[7]),Float.parseFloat(info[8]),info[9]);
                 route.add(temp);
                 System.out.println(temp.toString());

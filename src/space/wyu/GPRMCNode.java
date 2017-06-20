@@ -3,7 +3,7 @@ package space.wyu;
 /**
  * Created by WangYu on 2017/5/30.
  */
-public class GPSNode {
+public class GPRMCNode {
     float longitude;
     float latitude;
     String time;
@@ -11,7 +11,7 @@ public class GPSNode {
     float direction;
     String date;
 
-    public GPSNode(float longitude, float latitude, String time, float speed, float direction, String date) {
+    public GPRMCNode(float longitude, float latitude, String time, float speed, float direction, String date) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.time = time;
